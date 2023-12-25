@@ -25,7 +25,7 @@ Time = ["HalfDay","FullDay"]
 
 # The new data
 with st.form(key="Order"):
-    date = st.date_input(label = "Todays Date")
+    date = st.date_input(label = "Today Date")
     time = st.selectbox(label = "Select the time", options= Time)
     location = st.text_input(label = "Location")
     amount = st.text_input(label = "Amount")
@@ -34,7 +34,7 @@ with st.form(key="Order"):
 
     #mark mandatory fields
 
-    st.markdown("**required**")
+    st.markdown("**required*")
 
     submit_button = st.form_submit_button(label = "Submit")
 
