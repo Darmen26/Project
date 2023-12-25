@@ -20,7 +20,7 @@ existing_data = existing_data.dropna(how = "all")
 
 #list of details needed
 
-Details = ["Date","Time","Location","Amount", "Contact No."]
+Details = ["Date","Time","Location","Amount", "Commision", "Contact No."]
 Time = ["HalfDay","FullDay"]
 
 # The new data
@@ -29,6 +29,7 @@ with st.form(key="Order"):
     time = st.selectbox(label = "Select the time", options= Time)
     location = st.text_input(label = "Location")
     amount = st.text_input(label = "Amount")
+    commision = st.text_input(label = "Commision")
     contact  = st.text_input(label="Phone Num")
 
     #mark mandatory fields
@@ -49,6 +50,7 @@ with st.form(key="Order"):
                 "Date": date.strftime("%d-%m-%Y"),
                 "Time": time,
                 "Location": location,
+                "Commision": commision,
                 "Amount": amount,
                 "Contact No.": contact
 
