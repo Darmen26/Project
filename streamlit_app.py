@@ -6,7 +6,7 @@ import pandas as pd
 st.title("Jsk Order Management")
 st.markdown("Enter details below")
 
-# Establishing a google sheet
+# Establishing a google sheet connection
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fetching existing data
@@ -16,11 +16,11 @@ existing_data = existing_data.dropna(how="all")
 # List of details needed
 Details = ["Mr:", "Date", "Time", "Location", "Amount", "Commision", "Contact No."]
 Time = ["HalfDay", "FullDay"]
-Name = ["Ravi","Sumin"]
+Name = ["Ravi", "Sumin"]
 
 # The new data
 with st.form(key="Order"):
-    name = st.selectbox(label= "Name:")
+    name = st.selectbox(label="Name:", options=Name)
     date = st.date_input(label="Today Date")
     time = st.selectbox(label="Select the time", options=Time)
     location = st.text_input(label="Location")
@@ -34,8 +34,8 @@ with st.form(key="Order"):
     submit_button = st.form_submit_button(label="Submit")
 
     if submit_button:
-        if not date or not time or not location or not amount:
-            st.warning("Please fill up the mandatory fields")
+        if not all([date, time, location, amount]):
+            st.warning("Please fill up all mandatory fields")
             st.stop()
         else:
             # Create new row
@@ -51,7 +51,7 @@ with st.form(key="Order"):
                 }
             ])
 
-            # Add the new data into sheet
+            # Add the new data into the sheet
             update_df = pd.concat([existing_data, order_data], ignore_index=True)
 
             # Update the google sheet
