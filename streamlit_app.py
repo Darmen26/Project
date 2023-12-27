@@ -10,7 +10,7 @@ st.markdown("Enter details below")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fetching existing data
-existing_data = conn.read(worksheet="Order", usecols=list(range(8)), ttl=5)
+existing_data = conn.read(worksheet="Order", usecols=list(range(7)), ttl=5)
 existing_data = existing_data.dropna(how="all")
 
 # List of details needed
