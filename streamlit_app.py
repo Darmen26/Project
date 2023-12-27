@@ -27,7 +27,7 @@ Time = ["HalfDay","FullDay"]
 
 # The new data
 with st.form(key="Order"):
-    name = st.selectbox(label= "Mr:")
+    name = st.selectbox(label= "Name:")
     date = st.date_input(label = "Today Date")
     time = st.selectbox(label = "Select the time", options= Time)
     location = st.text_input(label = "Location")
