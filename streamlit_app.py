@@ -16,10 +16,11 @@ existing_data = existing_data.dropna(how="all")
 # List of details needed
 Details = ["Mr:", "Date", "Time", "Location", "Amount", "Commision", "Contact No."]
 Time = ["HalfDay", "FullDay"]
+Name = ["Ravi","Sumin"]
 
 # The new data
 with st.form(key="Order"):
-    # name = st.selectbox(label= "Name:")
+    name = st.selectbox(label= "Name:")
     date = st.date_input(label="Today Date")
     time = st.selectbox(label="Select the time", options=Time)
     location = st.text_input(label="Location")
@@ -40,7 +41,7 @@ with st.form(key="Order"):
             # Create new row
             order_data = pd.DataFrame([
                 {
-                    # "Name": name,
+                    "Name": name,
                     "Date": date.strftime("%d-%m-%Y"),
                     "Time": time,
                     "Location": location,
