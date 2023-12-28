@@ -3,8 +3,8 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
 # Display title and description
-st.title("Jsk Order Management")
-st.markdown("Enter details below")
+st.title("J Star Keeranaa Order")
+st.markdown("Masukkan Butiran dibawah:")
 
 # Establishing a google sheet connection
 conn = st.connection("gsheets", type=GSheetsConnection)
@@ -14,19 +14,19 @@ existing_data = conn.read(worksheet="Order", usecols=list(range(7)), ttl=5)
 existing_data = existing_data.dropna(how="all")
 
 # List of details needed
-Details = ["Mr:", "Date", "Time", "Location", "Amount", "Commision", "Contact No."]
-Time = ["HalfDay", "FullDay"]
+Details = ["Name:", "Tarikh", "Waktu", "Lokasi", "Jumlah", "Komisyen", "No.Telephone"]
+Time = ["Setengah Hari", "Satu Hari"]
 Name = ["Ravi", "Sumin"]
 
 # The new data
 with st.form(key="Order"):
     name = st.selectbox(label="Name:", options=Name)
-    date = st.date_input(label="Today Date")
-    time = st.selectbox(label="Select the time", options=Time)
-    location = st.text_input(label="Location")
-    amount = st.text_input(label="Amount")
-    commision = st.text_input(label="Commision")
-    contact = st.text_input(label="Phone Num")
+    date = st.date_input(label="Tarikh")
+    time = st.selectbox(label="Waktu", options=Time)
+    location = st.text_input(label="Lokasi")
+    amount = st.text_input(label="Jumlah")
+    commision = st.text_input(label="Komisyen")
+    contact = st.text_input(label="No.Telephone")
 
     # Mark mandatory fields
     st.markdown("**required*")
@@ -35,19 +35,19 @@ with st.form(key="Order"):
 
     if submit_button:
         if not all([date, time, location, amount]):
-            st.warning("Please fill up all mandatory fields")
+            st.warning("Sila isi semua perkara")
             st.stop()
         else:
             # Create new row
             order_data = pd.DataFrame([
                 {
                     "Name": name,
-                    "Date": date.strftime("%d-%m-%Y"),
-                    "Time": time,
-                    "Location": location,
-                    "Commision": commision,
-                    "Amount": amount,
-                    "Contact No.": contact
+                    "Tarikh": date.strftime("%d-%m-%Y"),
+                    "Waktu": time,
+                    "Lokasi": location,
+                    "Komisyen": commision,
+                    "Jumlah": amount,
+                    "No.Telephone": contact
                 }
             ])
 
