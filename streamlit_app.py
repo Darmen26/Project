@@ -10,11 +10,11 @@ st.markdown("Masukkan Butiran dibawah:")
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # Fetching existing data
-existing_data = conn.read(worksheet="Order", usecols=list(range(7)), ttl=5)
+existing_data = conn.read(worksheet="Order", usecols=list(range(8)), ttl=5)
 existing_data = existing_data.dropna(how="all")
 
 # List of details needed
-Details = ["Name:", "Tarikh", "Waktu", "Lokasi", "Jumlah", "Komisyen", "No.Telephone"]
+Details = ["Name:", "Tarikh", "Waktu", "Lokasi","OT", "Jumlah", "Komisyen", "No.Telephone"]
 Time = ["Setengah Hari", "Satu Hari"]
 Name = ["Ravi", "Sumin"]
 
@@ -24,6 +24,7 @@ with st.form(key="Order"):
     date = st.date_input(label="Tarikh")
     time = st.selectbox(label="Waktu", options=Time)
     location = st.text_input(label="Lokasi")
+    ot = st.text_input(label = "OT")
     amount = st.text_input(label="Jumlah")
     commision = st.text_input(label="Komisyen")
     contact = st.text_input(label="No.Telephone")
@@ -45,6 +46,7 @@ with st.form(key="Order"):
                     "Tarikh": date.strftime("%d-%m-%Y"),
                     "Waktu": time,
                     "Lokasi": location,
+                    "OT":ot,
                     "Komisyen": commision,
                     "Jumlah": amount,
                     "No.Telephone": contact
