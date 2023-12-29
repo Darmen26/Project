@@ -32,7 +32,7 @@ with st.form(key="Order"):
     ot = st.text_input(label = "OT:")
     amount = st.text_input(label="Jumlah:")
     commision = st.text_input(label="Komisyen:")
-    payment =  st.radio(label="Payment:", option=Payment)
+    payment =  st.radio(label="Payment:", options=Payment)
     
 
     # Mark mandatory fields
