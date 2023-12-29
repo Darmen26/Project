@@ -17,23 +17,17 @@ existing_data = existing_data.dropna(how="all")
 Details = ["Name:", "Tarikh", "Waktu", "Lokasi","OT", "Jumlah", "Komisyen", "No.Telephone"]
 Time = ["Setengah Hari", "Satu Hari"]
 Name = ["Ravi", "Sumin"]
-Payment = ["Cash","Bank","X"]
-
 
 # The new data
 with st.form(key="Order"):
-    name = st.radio(label="Name:", options=Name)
-    date = st.date_input(label="Tarikh:")
-    company = st.text_input(label="Name Syarikat:")
-    contact = st.text_input(label="No.Telephone:")
-    bill = st.text_input(label="Nombor Do:")
-    location = st.text_input(label="Lokasi:")
-    time = st.radio(label="Waktu:", options=Time)
-    ot = st.text_input(label = "OT:")
-    amount = st.text_input(label="Jumlah:")
-    commision = st.text_input(label="Komisyen:")
-    payment =  st.radio(label="Payment:", options=Payment)
-    
+    name = st.selectbox(label="Name:", options=Name)
+    date = st.date_input(label="Tarikh")
+    time = st.selectbox(label="Waktu", options=Time)
+    location = st.text_input(label="Lokasi")
+    ot = st.text_input(label = "OT")
+    amount = st.text_input(label="Jumlah")
+    commision = st.text_input(label="Komisyen")
+    contact = st.text_input(label="No.Telephone")
 
     # Mark mandatory fields
     st.markdown("**required*")
@@ -41,7 +35,7 @@ with st.form(key="Order"):
     submit_button = st.form_submit_button(label="Submit")
 
     if submit_button:
-        if not all([date, time, location, amount,company,payment]):
+        if not all([date, time, location, amount]):
             st.warning("Sila isi semua perkara")
             st.stop()
         else:
@@ -49,16 +43,13 @@ with st.form(key="Order"):
             order_data = pd.DataFrame([
                 {
                     "Name": name,
-                    "Date": date.strftime("%d-%m-%Y"),
-                    "Company": company,
-                    "Contact": contact,
-                    "Bill":bill,
-                    "Location": location,
-                    "Time": time,
+                    "Tarikh": date.strftime("%d-%m-%Y"),
+                    "Waktu": time,
+                    "Lokasi": location,
                     "OT":ot,
-                    "Commision": commision,
+                    "Komisyen": commision,
                     "Jumlah": amount,
-                    "Payment": payment
+                    "No.Telephone": contact
                 }
             ])
 
