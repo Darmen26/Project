@@ -20,7 +20,7 @@ Name = ["Ravi", "Sumin"]
 
 # The new data
 with st.form(key="Order"):
-    name = st.radio(label="Name:")
+    name = st.radio(label="Name:", options=Name)
     date = st.date_input(label="Tarikh")
     time = st.selectbox(label="Waktu", options=Time)
     location = st.text_input(label="Lokasi")
